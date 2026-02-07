@@ -12,6 +12,11 @@ on:
       - 'cookbook-2/**'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
 env:
   GITHUB_REPOSITORY: ${{ github.repository }}
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
