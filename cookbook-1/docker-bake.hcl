@@ -1,10 +1,10 @@
 # Variables - ALWAYS DEFINE THESE
 variable "GITHUB_REPOSITORY" {
-  default = "avjpl/Docker-Bake-Cookbook"  # Replace with your GitHub username/repo
+  default = "avjpl/Docker-Bake-Cookbook"
 }
 
 variable "DOCKERHUB_USERNAME" {
-  default = "avjpl"  # Replace with your Docker Hub username
+  default = "avjpl"
 }
 
 target "app" {

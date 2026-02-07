@@ -45,4 +45,4 @@ jobs:
 
       - name: Build and push
         working-directory: ./cookbook-1
-        run: docker buildx back --push
+        run: docker buildx bake --push

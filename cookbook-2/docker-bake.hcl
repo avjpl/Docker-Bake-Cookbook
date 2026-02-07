@@ -14,7 +14,7 @@ function "tags" {
   params = [version]
   result = [
     "ghcr.io/${lower(GITHUB_REPOSITORY)}:${version}",
-    "ghrc.io/${lower(GITHUB_REPOSITORY)}:latest",
+    "ghcr.io/${lower(GITHUB_REPOSITORY)}:latest",
     "${DOCKERHUB_USERNAME}/cookbook-2:${version}",
     "${DOCKERHUB_USERNAME}/cookbook-2:latest"
   ]
