@@ -1,10 +1,10 @@
 # Variables - ALWAYS DEFINE THESE
 variable "GITHUB_REPOSITORY" {
-  default = "avjpl/docker-bake-cookbook"  # Replace with your GitHub username/repo
+  default = "avjpl/Docker-Bake-Cookbook"  # Replace with your GitHub username/repo
 }
 
 variable "DOCKERHUB_USERNAME" {
-  default = "avjpl"      # Replace with your Docker Hub username
+  default = "avjpl"  # Replace with your Docker Hub username
 }
 
 target "app" {
@@ -12,7 +12,7 @@ target "app" {
   context = "."
 
   tags = [
-    "ghcr.io/${GITHUB_REPOSITORY}:latest",
+    "ghcr.io/${lower(GITHUB_REPOSITORY)}:latest",
     "${DOCKERHUB_USERNAME}/cookbook-1:latest"
   ]
 
@@ -22,7 +22,6 @@ target "app" {
   }
 }
 
-# Add default group
 group "default" {
   targets = ["app"]
 }
