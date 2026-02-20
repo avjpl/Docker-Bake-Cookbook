@@ -1,5 +1,5 @@
 import os
-import datatime
+import datetime
 
 version = os.getenv('APP_VERSION', 'unknown')
 print(f'Application Version: { version }')

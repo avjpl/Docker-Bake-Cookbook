@@ -1,4 +1,4 @@
-name: Cookbook 1 = Basic Build and Push
+name: Cookbook 1 - Basic Build and Push
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log in to Docker Hub

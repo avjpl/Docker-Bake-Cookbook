@@ -25,14 +25,14 @@ target "app" {
     context = "."
 
   args = {
-    VERSION = VERSION
+    VERSION = "${VERSION}"
   }
 
   tags = tags(VERSION)
 
   labels = {
     "org.opencontainers.image.source" = "https://github.com/${GITHUB_REPOSITORY}"
-    "org.opencontainers.version" = VERSION
+    "org.opencontainers.version" = "${VERSION}"
     "org.opencontainers.image.created" = timestamp()
   }
 }

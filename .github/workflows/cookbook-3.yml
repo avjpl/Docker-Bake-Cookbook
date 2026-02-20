@@ -1,21 +1,15 @@
-name: Coombook 2 - Versioned Builds
+name: Cookbook - 3 Multi-Platform
 
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]
     paths:
-      - 'cookbook-2/**'
-      - '.github/workflows/cookbook-2.yml'
+      - 'cookbook-3/**'
+      - '.github/workflows/cookbook-3.yml'
   pull_request:
     paths:
-      - 'cookbook-2/**'
+      - 'cookbook-3/**'
   workflow_dispatch:
-
-permissions:
-  contents: read
-  packages: write
-  id-token: write
 
 env:
   GITHUB_REPOSITORY: ${{ github.repository }}
@@ -26,19 +20,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Extract version from git
-        id: version
-        run: |
-          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          else
-            VERSION="dev-${GITHUB_SHA::7}"
-          fi
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
-          echo "Building version: ${VERSION}"
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -50,14 +36,13 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log in to Docker Hub
+      - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
+          registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
-        working-directory: ./cookbook-2
-        env:
-          VERSION: ${{ steps.version.outputs.VERSION }}
+      - name: Build and push multi-platform images
+        working-directory: ./cookbook-3
         run: docker buildx bake --push
