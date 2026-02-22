@@ -10,7 +10,7 @@ variable "DOCKERHUB_USERNAME" {
   default = "avjpl"
 }
 
-local {
+locals {
   repo = lower(GITHUB_REPOSITORY)
 }
 
