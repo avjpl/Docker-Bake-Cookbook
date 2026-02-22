@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS healt_check (
+  id SERIAL PRIMARY KEY,
+  checked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO healt_check (checked_at) VALUES (NOW())
