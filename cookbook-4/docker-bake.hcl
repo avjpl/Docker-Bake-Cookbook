@@ -3,7 +3,7 @@ variable "VERSION" {
 }
 
 variable "GITHUB_REPOSITORY" {
-  default = "avjpl/docker-bake-cookbook"
+  default = lower("avjpl/docker-bake-cookbook")
 }
 
 variable "DOCKERHUB_USERNAME" {
@@ -29,11 +29,11 @@ target "frontend" {
   ]
 
   cache-from = [
-    "type=registry,ref=ghcr.io/${lower(GITHUB_REPOSITORY)}/frontend:buildcache"
+    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/frontend:buildcache"
   ]
 
   cache-to = [
-    "type=registry,ref=ghcr.io/${lower(GITHUB_REPOSITORY)}/frontend:buildcache,mode=max"
+    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/frontend:buildcache,mode=max"
   ]
 }
 
@@ -48,11 +48,11 @@ target "backend" {
   ]
 
   cache-from = [
-    "type=registry,ref=ghcr.io/${lower(GITHUB_REPOSITORY)}/backend:buildcache"
+    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/backend:buildcache"
   ]
 
   cache-to = [
-    "type=registry,ref=ghcr.io/${lower(GITHUB_REPOSITORY)}/backend:buildcache,mode=max"
+    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/backend:buildcache,mode=max"
   ]
 }
 
@@ -67,11 +67,11 @@ target "database" {
   ]
 
   cache-from = [
-    "type=registry,ref=ghcr.io/${lower(GITHUB_REPOSITORY)}/database:buildcache"
+    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/database:buildcache"
   ]
 
   cache-to = [
-    "type=registry,ref=ghcr.io/${lower(GITHUB_REPOSITORY)}/database:buildcache,mode=max"
+    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/database:buildcache,mode=max"
   ]
 }
 
