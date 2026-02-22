@@ -3,7 +3,7 @@ variable "VERSION" {
 }
 
 variable "GITHUB_REPOSITORY" {
-  default = lower("avjpl/docker-bake-cookbook")
+  default = "avjpl/docker-bake-cookbook"
 }
 
 variable "DOCKERHUB_USERNAME" {
