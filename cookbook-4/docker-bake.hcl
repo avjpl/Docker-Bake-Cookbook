@@ -62,7 +62,7 @@ target "database" {
   context = "./database"
 
   tags = [
-    "ghcr.io/${GITHUB_REPOSITORY}/database:${VERSION}",
+    "ghcr.io/${lower(GITHUB_REPOSITORY)}/database:${VERSION}",
     "${DOCKERHUB_USERNAME}/cookbook-4-database:${VERSION}"
   ]
 
