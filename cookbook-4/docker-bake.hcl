@@ -24,7 +24,7 @@ target "frontend" {
   context = "./frontend"
 
   tags = [
-    "ghcr.io/${GITHUB_REPOSITORY}/frontend:${VERSION}",
+    "ghcr.io/${lower(GITHUB_REPOSITORY)}/frontend:${VERSION}",
     "${DOCKERHUB_USERNAME}/cookbook-4-frontend:${VERSION}"
   ]
 
@@ -43,7 +43,7 @@ target "backend" {
   context = "./backend"
 
   tags = [
-    "ghcr.io/${GITHUB_REPOSITORY}/backend:${VERSION}",
+    "ghcr.io/${lower(GITHUB_REPOSITORY)}/backend:${VERSION}",
     "${DOCKERHUB_USERNAME}/cookbook-4-backend:${VERSION}"
   ]
 
