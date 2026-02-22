@@ -10,6 +10,10 @@ variable "DOCKERHUB_USERNAME" {
   default = "avjpl"
 }
 
+locals {
+  repo = lower(GITHUB_REPOSITORY)
+}
+
 target "base" {
   labels = {
     "org.opencontainers.image.source" = "https://github.com$/${GITHUB_REPOSITORY}"
@@ -24,16 +28,16 @@ target "frontend" {
   context = "./frontend"
 
   tags = [
-    "ghcr.io/${lower(GITHUB_REPOSITORY)}/frontend:${VERSION}",
+    "ghcr.io/${locals.repo}/frontend:${VERSION}",
     "${DOCKERHUB_USERNAME}/cookbook-4-frontend:${VERSION}"
   ]
 
   cache-from = [
-    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/frontend:buildcache"
+    "type=registry,ref=ghcr.io/${locals.repo}/frontend:buildcache"
   ]
 
   cache-to = [
-    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/frontend:buildcache,mode=max"
+    "type=registry,ref=ghcr.io/${locals.repo}/frontend:buildcache,mode=max"
   ]
 }
 
@@ -43,16 +47,16 @@ target "backend" {
   context = "./backend"
 
   tags = [
-    "ghcr.io/${lower(GITHUB_REPOSITORY)}/backend:${VERSION}",
+    "ghcr.io/${locals.repo}/backend:${VERSION}",
     "${DOCKERHUB_USERNAME}/cookbook-4-backend:${VERSION}"
   ]
 
   cache-from = [
-    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/backend:buildcache"
+    "type=registry,ref=ghcr.io/${locals.repo}/backend:buildcache"
   ]
 
   cache-to = [
-    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/backend:buildcache,mode=max"
+    "type=registry,ref=ghcr.io/${locals.repo}/backend:buildcache,mode=max"
   ]
 }
 
@@ -62,16 +66,16 @@ target "database" {
   context = "./database"
 
   tags = [
-    "ghcr.io/${lower(GITHUB_REPOSITORY)}/database:${VERSION}",
+    "ghcr.io/${locals.repo}/database:${VERSION}",
     "${DOCKERHUB_USERNAME}/cookbook-4-database:${VERSION}"
   ]
 
   cache-from = [
-    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/database:buildcache"
+    "type=registry,ref=ghcr.io/${locals.repo}/database:buildcache"
   ]
 
   cache-to = [
-    "type=registry,ref=ghcr.io/${GITHUB_REPOSITORY}/database:buildcache,mode=max"
+    "type=registry,ref=ghcr.io/${locals.repo}/database:buildcache,mode=max"
   ]
 }
 
