@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'cookbook-5/**'
-      - - '.github/workflows/cookbook-5.yml'
+      - '.github/workflows/cookbook-5.yml'
   pull_request:
     paths:
       - 'cookbook-5/**'
