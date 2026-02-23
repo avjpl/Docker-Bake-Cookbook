@@ -1,0 +1,14 @@
+ARG NODE_VERSION=20
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /app
+
+COPY package.json ./
+
+RUN npm install --production
+
+COPY app.js .
+
+RUN node --version > /node-version.txt
+
+CMD ["node", "app.js"]

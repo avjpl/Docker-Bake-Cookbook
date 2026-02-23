@@ -2,8 +2,7 @@ name: Cookbook 4 - Multi-Service with Cache
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
       - 'cookbook-4/**'
       - '.github/workflows/cookbook-4.yml'
@@ -11,11 +10,6 @@ on:
     paths:
       - 'cookbook-4/**'
   workflow_dispatch:
-
-permissions:
-  contents: read
-  packages: write
-  id-token: write
 
 env:
   GITHUB_REPOSITORY: ${{ github.repository }}
